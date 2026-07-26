@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿尔卑斯路线定制器 Alpine Route Planner Alpen-Routenplaner</title>
+<meta name="description" content="输入瑞士湖区（如布里恩茨湖），自动生成含实时天气、湖船班次、耗时、装备清单与餐饮推荐的徒步行程表 — 中文/English/Deutsch。Enter a Swiss lake region and get a live weather + boat-schedule hiking itinerary with gear checklist and food stops. Alpen-Wanderrouten mit Live-Wetter, Schifffahrplan, Ausrüstungsliste und Restauranttipps.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://junpingkoch-web.github.io/alpine-route-planner/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%94%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<!-- Google AdSense: replace data-ad-client below with your real ca-pub-XXXX ID once your site is approved. -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1 class="app-title">
+        <span class="title-icon" aria-hidden="true">🏔️</span>
+        <span class="title-text" data-i18n="appTitle">阿尔卑斯路线定制器</span>
+        <span class="title-icon" aria-hidden="true">⛴️</span>
+      </h1>
+      <div class="header-actions">
+        <button id="helpToggle" class="icon-btn help-btn-3d" type="button" aria-label="Tips" aria-haspopup="dialog">?</button>
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button class="lang-btn active" data-lang="zh" type="button">中文</button>
+          <button class="lang-btn" data-lang="en" type="button">EN</button>
+          <button class="lang-btn" data-lang="de" type="button">DE</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Ad slot: top banner -->
+    <div class="ad-slot">
+      <div class="ad-box" data-i18n="adLabel">广告</div>
+    </div>
+
+    <div class="card toolbar-card">
+      <div class="field">
+        <label for="regionSelect" data-i18n="regionLabel">选择湖区路线</label>
+        <select id="regionSelect"></select>
+      </div>
+      <div class="field">
+        <label for="customInput" data-i18n="customLabel">或输入其他瑞士地点（仅天气 + 通用建议）</label>
+        <input type="text" id="customInput" data-i18n-placeholder="customPlaceholder" placeholder="例如 Zermatt、St. Moritz…">
+      </div>
+      <button id="planBtn" class="btn btn-primary" type="button" data-i18n="planBtn">生成行程</button>
+    </div>
+
+    <p class="status-line" id="statusLine" hidden></p>
+
+    <section id="results" class="results" hidden>
+
+      <div class="card weather-card">
+        <h2 class="section-title" data-i18n="weatherTitle">今日天气</h2>
+        <div id="weatherBody" class="weather-body"></div>
+        <p class="source-note" data-i18n="weatherSource">数据来源：Open-Meteo</p>
+      </div>
+
+      <div class="card boat-card">
+        <h2 class="section-title" data-i18n="boatTitle">湖船班次</h2>
+        <div id="boatBody" class="boat-body"></div>
+        <p class="source-note" data-i18n="boatSource">数据来源：transport.opendata.ch（瑞士公共交通开放数据）</p>
+      </div>
+
+      <div class="card timeline-card">
+        <h2 class="section-title" data-i18n="timelineTitle">行程 Timeline</h2>
+        <ol id="timelineList" class="timeline-list"></ol>
+        <p class="timeline-meta" id="timelineMeta"></p>
+      </div>
+
+      <div class="card poster-card">
+        <h2 class="section-title" data-i18n="posterTitle">旅程插画海报</h2>
+        <div id="posterContainer" class="poster-container"></div>
+        <button id="downloadPosterBtn" class="btn btn-secondary" type="button" data-i18n="downloadPoster">下载海报</button>
+      </div>
+
+      <div class="card gear-card">
+        <h2 class="section-title" data-i18n="gearTitle">装备清单</h2>
+        <ul id="gearList" class="gear-list"></ul>
+      </div>
+
+      <div class="card food-card">
+        <h2 class="section-title" data-i18n="foodTitle">餐饮推荐</h2>
+        <ul id="foodList" class="food-list"></ul>
+      </div>
+
+    </section>
+
+    <!-- Ad slot: in-content rectangle -->
+    <div class="ad-slot in-content">
+      <div class="ad-box" data-i18n="adLabel">广告</div>
+    </div>
+
+    <footer class="disclaimer">
+      <p data-i18n="disclaimer">天气与船班数据实时抓取自公开接口，仅供行程规划参考；实际出行请以 SBB/船公司官方时刻表与现场天气为准。</p>
+    </footer>
+  </div>
+
+  <a
+    class="support-fab"
+    href="https://www.buymeacoffee.com/junping.koch"
+    target="_blank"
+    rel="noopener noreferrer"
+    data-i18n-title="coffeeTooltip"
+    title="喜欢这个工具？请我喝杯咖啡"
+  >
+    <span aria-hidden="true">☕</span>
+    <span data-i18n="coffeeBtn">请我喝杯咖啡</span>
+  </a>
+
+  <div id="helpModal" class="modal-overlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+      <div class="modal-head">
+        <h2 id="helpTitle" data-i18n="helpTitle">使用说明</h2>
+        <button id="helpClose" class="icon-btn" type="button" aria-label="Close">&times;</button>
+      </div>
+      <ul class="tips-list">
+        <li data-i18n="helpTip1">从下拉菜单选择一条精选湖区徒步路线，或输入其他瑞士地点仅查看天气。</li>
+        <li data-i18n="helpTip2">天气与湖船班次为实时数据；若接口暂时不可用，会显示提示并使用通用行程模板。</li>
+        <li data-i18n="helpTip3">装备清单会根据当天天气（降雨概率、气温、风速）自动调整。</li>
+        <li data-i18n="helpTip4">右上角可随时切换 中文 / EN / DE。</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="poster.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
