@@ -12,6 +12,45 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<!-- Structured data: FAQPage (English defaults; keep in sync with the "en" faq array in script.js) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is the weather and boat data actually live?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Weather comes from Open-Meteo and boat schedules from transport.opendata.ch (Swiss public transport open data) — both are queried live each time you generate an itinerary." }
+    },
+    {
+      "@type": "Question",
+      "name": "How is the gear checklist calculated?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It's generated from the day's live weather: high rain probability suggests a waterproof jacket and dry bag, low temperatures add a warm layer, and stronger wind prompts a windbreaker." }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I enter a location that's not in the curated route list?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The tool still shows live weather for that location, but since there's no matching route, boat, or restaurant database for it, you only get a generic suggestion rather than a fully tailored itinerary." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can this tool book a boat ticket for me?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. It only displays departure times from the public API as a reference — book through the SBB app or the relevant lake shipping company's own channel." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the downloaded poster get uploaded anywhere?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. The poster is drawn entirely in your browser using Canvas; clicking download just saves it as a local image file." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this tool save my search history?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Only your language preference is saved locally in your browser; searches and generated itineraries aren't logged or sent to a server." }
+    }
+  ]
+}
+</script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -122,8 +161,24 @@
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
+    <section class="explain-section">
+      <h2 data-i18n="explainTitle">How does this itinerary planner actually work?</h2>
+      <p data-i18n="explainP1"></p>
+      <p data-i18n="explainP2"></p>
+      <p data-i18n="explainP3"></p>
+
+      <h2 data-i18n="faqTitle">Frequently Asked Questions</h2>
+      <div class="faq-list" id="faqList"></div>
+    </section>
+
     <footer class="disclaimer">
       <p data-i18n="disclaimer">天气与船班数据实时抓取自公开接口，仅供行程规划参考；实际出行请以 SBB/船公司官方时刻表与现场天气为准。</p>
+      <nav class="footer-links">
+        <a href="https://junpingkoch-web.github.io/about.html">About · 关于</a>
+        <a href="https://junpingkoch-web.github.io/contact.html">Contact · 联系</a>
+        <a href="https://junpingkoch-web.github.io/privacy.html">Privacy · 隐私</a>
+        <a href="https://junpingkoch-web.github.io/terms.html">Terms · 条款</a>
+      </nav>
     </footer>
   </div>
 

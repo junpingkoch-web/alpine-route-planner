@@ -52,7 +52,20 @@
       gear_rainJacket: "防水冲锋衣", gear_dryBag: "防水袋（保护电子设备）",
       gear_warmLayer: "保暖抓绒/软壳", gear_gloves: "薄手套",
       gear_windbreaker: "防风外套", gear_extraWater: "额外饮水 + 电解质",
-      gear_sunglasses: "太阳镜"
+      gear_sunglasses: "太阳镜",
+      explainTitle: "这个行程规划器是怎么运作的？",
+      explainP1: "选定路线或自定义地点后，工具会实时调用两个公开数据接口：Open-Meteo 提供当天的气温、降雨概率、风速和日出日落时间；transport.opendata.ch（瑞士公共交通开放数据）提供湖船实际班次。两者都是免费公开的官方/半官方数据源，不需要注册账号，也不经过我自己的服务器中转。",
+      explainP2: "装备清单不是固定模板，而是根据当天实时天气规则生成的：降雨概率较高会加入防水外套和防水袋，气温较低会加入保暖层，风速较大会提示带上防风衣。如果两个接口任一暂时不可用，页面会显示提示，并退回到一份通用行程模板，保证工具依然可用。",
+      explainP3: "精选路线（如布里恩茨湖、图恩湖等）会生成包含徒步耗时、海拔爬升、餐饮点的完整行程；如果你输入的是列表之外的其他瑞士地点，工具只能提供天气信息和一份通用建议，因为没有对应的路线/餐饮数据库。所有信息仅供行程参考，具体船班、餐厅营业时间请以官方渠道当天信息为准。",
+      faqTitle: "常见问题",
+      faq: [
+        { q: "天气和船班数据是实时的吗？", a: "是的。天气数据来自 Open-Meteo，船班数据来自 transport.opendata.ch（瑞士公共交通开放数据接口），都是每次生成行程时实时查询，不是预先缓存的静态数据。" },
+        { q: "装备清单是怎么算出来的？", a: "根据当天天气实时判断：降雨概率高会建议带防水外套和防水袋，气温低会建议加保暖层，风速大会提示带防风衣，不是固定不变的清单。" },
+        { q: "如果我输入的地点不在精选路线列表里会怎样？", a: "工具仍然会显示该地点的实时天气，但因为没有对应的路线、船班和餐饮数据库，只能提供一份通用行程建议，而不是完整的定制化行程。" },
+        { q: "工具能直接帮我订船票吗？", a: "不能。工具只展示公开接口查到的班次时刻作为参考，实际购票请通过瑞士联邦铁路（SBB）App 或对应湖船公司官方渠道办理。" },
+        { q: "下载的海报会上传到哪里吗？", a: "不会。海报完全在你的浏览器本地用 Canvas 绘制生成，点击下载才会保存为图片文件，全程不会上传到任何服务器。" },
+        { q: "这个工具会保存我的搜索记录吗？", a: "不会。只有语言偏好会保存在本地浏览器中，其余搜索和生成结果都不会被记录或发送到服务器。" }
+      ]
     },
     en: {
       appTitle: "Alpine Route Planner",
@@ -101,7 +114,20 @@
       gear_rainJacket: "Waterproof rain jacket", gear_dryBag: "Dry bag (protect electronics)",
       gear_warmLayer: "Warm fleece/softshell layer", gear_gloves: "Light gloves",
       gear_windbreaker: "Windproof jacket", gear_extraWater: "Extra water + electrolytes",
-      gear_sunglasses: "Sunglasses"
+      gear_sunglasses: "Sunglasses",
+      explainTitle: "How does this itinerary planner actually work?",
+      explainP1: "Once you pick a route or enter a custom location, the tool calls two public data APIs live: Open-Meteo for the day's temperature, rain probability, wind speed, and sunrise/sunset, and transport.opendata.ch (Swiss public transport open data) for actual boat departures. Both are free, official or semi-official data sources — no account needed, and nothing is routed through a server of mine.",
+      explainP2: "The gear checklist isn't a fixed template — it's generated from live weather rules: high rain probability adds a waterproof jacket and dry bag, low temperatures add a warm layer, and higher wind speeds prompt a windbreaker. If either API is briefly unavailable, the page shows a notice and falls back to a generic itinerary template so the tool still works.",
+      explainP3: "Curated routes (Lake Brienz, Lake Thun, etc.) produce a full itinerary with hiking duration, elevation gain, and food stops; if you enter a Swiss location outside that list, the tool can only show weather plus a generic suggestion, since there's no matching route or restaurant database for it. Everything here is for trip-planning reference only — check official channels for the day's actual boat schedule and restaurant hours.",
+      faqTitle: "Frequently Asked Questions",
+      faq: [
+        { q: "Is the weather and boat data actually live?", a: "Yes. Weather comes from Open-Meteo and boat schedules from transport.opendata.ch (Swiss public transport open data) — both are queried live each time you generate an itinerary, not pre-cached static data." },
+        { q: "How is the gear checklist calculated?", a: "It's generated from the day's live weather: high rain probability suggests a waterproof jacket and dry bag, low temperatures add a warm layer, and stronger wind prompts a windbreaker — it isn't a fixed list." },
+        { q: "What happens if I enter a location that's not in the curated route list?", a: "The tool still shows live weather for that location, but since there's no matching route, boat, or restaurant database for it, you only get a generic suggestion rather than a fully tailored itinerary." },
+        { q: "Can this tool book a boat ticket for me?", a: "No. It only displays departure times from the public API as a reference — book through the SBB app or the relevant lake shipping company's own channel." },
+        { q: "Does the downloaded poster get uploaded anywhere?", a: "No. The poster is drawn entirely in your browser using Canvas; clicking download just saves it as a local image file — nothing is ever uploaded to a server." },
+        { q: "Does this tool save my search history?", a: "No. Only your language preference is saved locally in your browser; searches and generated itineraries aren't logged or sent to a server." }
+      ]
     },
     de: {
       appTitle: "Alpen-Routenplaner",
@@ -150,7 +176,20 @@
       gear_rainJacket: "Wasserdichte Regenjacke", gear_dryBag: "Packsack (Elektronik schützen)",
       gear_warmLayer: "Warme Fleece-/Softshell-Schicht", gear_gloves: "Leichte Handschuhe",
       gear_windbreaker: "Winddichte Jacke", gear_extraWater: "Zusätzliches Wasser + Elektrolyte",
-      gear_sunglasses: "Sonnenbrille"
+      gear_sunglasses: "Sonnenbrille",
+      explainTitle: "Wie funktioniert dieser Routenplaner eigentlich?",
+      explainP1: "Sobald du eine Route auswählst oder einen eigenen Ort eingibst, ruft das Tool live zwei öffentliche Daten-APIs ab: Open-Meteo liefert Temperatur, Regenwahrscheinlichkeit, Windgeschwindigkeit und Sonnenauf-/-untergang des Tages, transport.opendata.ch (offene Daten des Schweizer öffentlichen Verkehrs) liefert die tatsächlichen Schiffsabfahrten. Beide sind kostenlose, offizielle bzw. halboffizielle Datenquellen — keine Anmeldung nötig, und nichts läuft über einen eigenen Server.",
+      explainP2: "Die Ausrüstungsliste ist keine feste Vorlage, sondern wird nach Live-Wetterregeln erzeugt: hohe Regenwahrscheinlichkeit fügt eine wasserdichte Jacke und einen Packsack hinzu, niedrige Temperaturen eine warme Schicht, stärkerer Wind eine winddichte Jacke. Ist eine der beiden Schnittstellen kurzzeitig nicht erreichbar, erscheint ein Hinweis und das Tool weicht auf eine generische Vorlage aus.",
+      explainP3: "Kuratierte Routen (Brienzersee, Thunersee usw.) liefern ein vollständiges Programm mit Wanderzeit, Höhenmetern und Restauranttipps; gibst du einen Schweizer Ort außerhalb dieser Liste ein, zeigt das Tool nur das Wetter plus eine generische Empfehlung, da dafür keine passende Routen- oder Restaurant-Datenbank existiert. Alle Angaben dienen nur der Planung — die tatsächlichen Schiffszeiten und Öffnungszeiten bitte über offizielle Kanäle am Reisetag prüfen.",
+      faqTitle: "Häufig gestellte Fragen",
+      faq: [
+        { q: "Sind Wetter- und Schiffsdaten wirklich live?", a: "Ja. Die Wetterdaten stammen von Open-Meteo, die Schiffszeiten von transport.opendata.ch (offene Daten des Schweizer öffentlichen Verkehrs) — beide werden bei jeder Routenerstellung live abgefragt, nicht aus einem statischen Cache." },
+        { q: "Wie wird die Ausrüstungsliste berechnet?", a: "Sie wird aus dem aktuellen Wetter abgeleitet: hohe Regenwahrscheinlichkeit empfiehlt eine wasserdichte Jacke und einen Packsack, niedrige Temperaturen eine warme Schicht, stärkerer Wind eine winddichte Jacke — keine feste Liste." },
+        { q: "Was passiert, wenn ich einen Ort eingebe, der nicht in der kuratierten Liste ist?", a: "Das Tool zeigt weiterhin das Live-Wetter für diesen Ort, aber da keine passende Routen-, Schiffs- oder Restaurant-Datenbank existiert, gibt es nur eine generische Empfehlung statt eines vollständig massgeschneiderten Programms." },
+        { q: "Kann das Tool direkt ein Schiffsticket für mich buchen?", a: "Nein. Es zeigt nur die Abfahrtszeiten aus der öffentlichen API als Referenz — gebucht wird über die SBB-App oder den offiziellen Kanal der jeweiligen Schifffahrtsgesellschaft." },
+        { q: "Wird das heruntergeladene Poster irgendwohin hochgeladen?", a: "Nein. Das Poster wird komplett in deinem Browser per Canvas gezeichnet; ein Klick auf Herunterladen speichert es nur lokal als Bilddatei." },
+        { q: "Speichert dieses Tool meinen Suchverlauf?", a: "Nein. Nur deine Sprachpräferenz wird lokal im Browser gespeichert; Suchanfragen und erzeugte Routen werden nicht protokolliert oder an einen Server gesendet." }
+      ]
     }
   };
 
@@ -193,10 +232,30 @@
     });
   }
 
+  const faqListEl = document.getElementById("faqList");
+  function renderFAQ() {
+    if (!faqListEl) return;
+    const faq = (i18n[currentLang] && i18n[currentLang].faq) || [];
+    faqListEl.innerHTML = "";
+    faq.forEach((item) => {
+      const details = document.createElement("details");
+      details.className = "faq-item";
+      const summary = document.createElement("summary");
+      summary.innerHTML = '<span class="chev">▶</span> <span>' + item.q + "</span>";
+      const body = document.createElement("div");
+      body.className = "faq-a";
+      body.textContent = item.a;
+      details.appendChild(summary);
+      details.appendChild(body);
+      faqListEl.appendChild(details);
+    });
+  }
+
   function applyLang() {
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       el.textContent = t(el.getAttribute("data-i18n"));
     });
+    renderFAQ();
     document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
       el.setAttribute("placeholder", t(el.getAttribute("data-i18n-placeholder")));
     });
