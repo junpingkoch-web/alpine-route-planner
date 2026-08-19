@@ -8,6 +8,7 @@
     zh: {
       appTitle: "阿尔卑斯路线定制器",
       regionLabel: "选择湖区路线",
+      regionPlaceholder: "— 请选择一条精选路线 —",
       customLabel: "或输入其他瑞士地点（仅天气 + 通用建议）",
       customPlaceholder: "例如 Zermatt、St. Moritz…",
       planBtn: "生成行程",
@@ -44,6 +45,7 @@
       genericSeg2: "返程",
       genericNote: "该地点暂无精选路线数据，以上为通用模板 — 建议从下拉菜单选择精选湖区路线以获取完整行程。",
       customNotFound: "未能定位该地点的天气坐标，请检查拼写或从下拉菜单选择精选路线。",
+      noSelection: "请先选择一条精选路线，或输入其他瑞士地点。",
       totalLabel: "预计总时长",
       elevationUnit: "米",
       gear_hikingBoots: "防滑登山鞋", gear_backpack: "轻量背包", gear_waterBottle: "水壶（1.5L 以上）",
@@ -76,6 +78,7 @@
     en: {
       appTitle: "Alpine Route Planner",
       regionLabel: "Choose a lake-hike route",
+      regionPlaceholder: "— Select a curated route —",
       customLabel: "Or enter another Swiss location (weather + generic tips only)",
       customPlaceholder: "e.g. Zermatt, St. Moritz…",
       planBtn: "Build itinerary",
@@ -112,6 +115,7 @@
       genericSeg2: "Return",
       genericNote: "No curated route data for this location — showing a generic template. Pick a curated route from the dropdown for a full itinerary.",
       customNotFound: "Couldn't resolve weather coordinates for this location — check the spelling or pick a curated route.",
+      noSelection: "Please pick a curated route, or enter another Swiss location first.",
       totalLabel: "Estimated total duration",
       elevationUnit: "m",
       gear_hikingBoots: "Sturdy hiking boots", gear_backpack: "Lightweight daypack", gear_waterBottle: "Water bottle (1.5L+)",
@@ -144,6 +148,7 @@
     de: {
       appTitle: "Alpen-Routenplaner",
       regionLabel: "Seewanderung auswählen",
+      regionPlaceholder: "— Bitte eine Route wählen —",
       customLabel: "Oder anderen Schweizer Ort eingeben (nur Wetter + allgemeine Tipps)",
       customPlaceholder: "z. B. Zermatt, St. Moritz…",
       planBtn: "Route erstellen",
@@ -180,6 +185,7 @@
       genericSeg2: "Rückweg",
       genericNote: "Keine kuratierten Routendaten für diesen Ort — generische Vorlage. Wähle eine kuratierte Route aus der Liste für eine vollständige Reiseplanung.",
       customNotFound: "Wetterkoordinaten für diesen Ort nicht gefunden — Schreibweise prüfen oder kuratierte Route wählen.",
+      noSelection: "Bitte zuerst eine kuratierte Route wählen oder einen anderen Schweizer Ort eingeben.",
       totalLabel: "Geschätzte Gesamtdauer",
       elevationUnit: "m",
       gear_hikingBoots: "Feste Wanderschuhe", gear_backpack: "Leichter Tagesrucksack", gear_waterBottle: "Wasserflasche (1,5L+)",
@@ -241,13 +247,32 @@
   const helpClose = document.getElementById("helpClose");
 
   function populateRegions() {
+    const prevValue = regionSelect.value;
     regionSelect.innerHTML = "";
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = t("regionPlaceholder");
+    regionSelect.appendChild(placeholder);
     REGIONS.forEach((r) => {
       const opt = document.createElement("option");
       opt.value = r.id;
       opt.textContent = (r.canton ? "[" + r.canton + "] " : "") + loc(r.lake) + " — " + loc(r.name);
       regionSelect.appendChild(opt);
     });
+    regionSelect.value = prevValue && REGIONS.some((r) => r.id === prevValue) ? prevValue : "";
+  }
+
+  function setInputMode(mode) {
+    if (mode === "region") {
+      customInput.value = "";
+      customInput.disabled = true;
+    } else if (mode === "custom") {
+      regionSelect.value = "";
+      regionSelect.disabled = true;
+    } else {
+      customInput.disabled = false;
+      regionSelect.disabled = false;
+    }
   }
 
   const faqListEl = document.getElementById("faqList");
@@ -560,6 +585,12 @@
     const customQuery = customInput.value.trim();
     const region = customQuery ? null : REGIONS.find((r) => r.id === regionSelect.value);
 
+    if (!region && !customQuery) {
+      statusLine.hidden = false;
+      statusLine.textContent = t("noSelection");
+      return;
+    }
+
     planBtn.disabled = true;
     statusLine.hidden = false;
     statusLine.textContent = t("planning");
@@ -610,6 +641,13 @@
   }
 
   planBtn.addEventListener("click", planRoute);
+
+  regionSelect.addEventListener("change", () => {
+    setInputMode(regionSelect.value ? "region" : "none");
+  });
+  customInput.addEventListener("input", () => {
+    setInputMode(customInput.value.trim() ? "custom" : "none");
+  });
 
   applyLang();
 })();

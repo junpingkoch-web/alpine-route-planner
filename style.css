@@ -187,6 +187,9 @@ body {
 .field input:focus,
 .field select:focus { outline: none; border-color: var(--accent); }
 
+.field input:disabled,
+.field select:disabled { opacity: 0.45; cursor: not-allowed; }
+
 .btn {
   border: none;
   border-radius: 10px;
