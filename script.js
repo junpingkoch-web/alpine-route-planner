@@ -16,6 +16,7 @@
       weatherTitle: "今日天气",
       weatherSource: "数据来源：Open-Meteo",
       boatTitle: "湖船班次",
+      transitTitle: "交通班次",
       boatSource: "数据来源：transport.opendata.ch（瑞士公共交通开放数据）",
       timelineTitle: "行程 Timeline",
       posterTitle: "旅程插画海报",
@@ -86,6 +87,7 @@
       weatherTitle: "Today's weather",
       weatherSource: "Source: Open-Meteo",
       boatTitle: "Lake boat schedule",
+      transitTitle: "Timetable",
       boatSource: "Source: transport.opendata.ch (Swiss public transport open data)",
       timelineTitle: "Itinerary timeline",
       posterTitle: "Illustrated trip poster",
@@ -156,6 +158,7 @@
       weatherTitle: "Wetter heute",
       weatherSource: "Quelle: Open-Meteo",
       boatTitle: "Schifffahrplan",
+      transitTitle: "Fahrplan",
       boatSource: "Quelle: transport.opendata.ch (offene Schweizer ÖV-Daten)",
       timelineTitle: "Reise-Timeline",
       posterTitle: "Illustriertes Reiseposter",
@@ -228,14 +231,28 @@
     return field[currentLang] || field.en || field.de || "";
   }
 
+  // ---------- Custom-place suggestions ----------
+  const SWISS_PLACES = [
+    "Zermatt", "St. Moritz", "Interlaken", "Grindelwald", "Wengen", "Mürren",
+    "Lauterbrunnen", "Gimmelwald", "Beatenberg", "Saas-Fee", "Verbier",
+    "Crans-Montana", "Gstaad", "Adelboden", "Kandersteg", "Engelberg",
+    "Andermatt", "Arosa", "Davos", "Klosters", "Pontresina", "Flims", "Laax",
+    "Champéry", "Leukerbad", "Meiringen", "Appenzell", "Braunwald", "Elm",
+    "Bettmeralp", "Riederalp", "Zinal", "Grimentz", "Stoos", "Melchsee-Frutt",
+    "Thun", "Spiez", "Vevey", "Montreux", "Ascona", "Locarno", "Sion", "Chur"
+  ];
+
   // ---------- Elements ----------
   const regionSelect = document.getElementById("regionSelect");
   const customInput = document.getElementById("customInput");
+  const customSuggestions = document.getElementById("customSuggestions");
   const planBtn = document.getElementById("planBtn");
   const statusLine = document.getElementById("statusLine");
   const results = document.getElementById("results");
   const weatherBody = document.getElementById("weatherBody");
   const boatBody = document.getElementById("boatBody");
+  const boatTitleEl = document.getElementById("boatTitleEl");
+  let lastBoatIsBoatOnly = null;
   const timelineList = document.getElementById("timelineList");
   const timelineMeta = document.getElementById("timelineMeta");
   const gearList = document.getElementById("gearList");
@@ -298,6 +315,9 @@
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       el.textContent = t(el.getAttribute("data-i18n"));
     });
+    if (lastBoatIsBoatOnly !== null) {
+      boatTitleEl.textContent = t(lastBoatIsBoatOnly ? "boatTitle" : "transitTitle");
+    }
     renderFAQ();
     document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
       el.setAttribute("placeholder", t(el.getAttribute("data-i18n-placeholder")));
@@ -407,6 +427,8 @@
 
   function renderBoat(result) {
     boatBody.innerHTML = "";
+    lastBoatIsBoatOnly = result ? !!result.isBoatOnly : null;
+    boatTitleEl.textContent = t(lastBoatIsBoatOnly ? "boatTitle" : "transitTitle");
     if (!result || !result.entries.length) {
       const p = document.createElement("p");
       p.className = "notice";
@@ -647,6 +669,39 @@
   });
   customInput.addEventListener("input", () => {
     setInputMode(customInput.value.trim() ? "custom" : "none");
+    renderSuggestions();
+  });
+
+  function closeSuggestions() {
+    customSuggestions.classList.remove("open");
+    customSuggestions.innerHTML = "";
+  }
+
+  function renderSuggestions() {
+    const query = customInput.value.trim().toLowerCase();
+    customSuggestions.innerHTML = "";
+    if (!query) { closeSuggestions(); return; }
+    const matches = SWISS_PLACES.filter((p) => p.toLowerCase().includes(query)).slice(0, 8);
+    if (!matches.length) { closeSuggestions(); return; }
+    matches.forEach((place) => {
+      const li = document.createElement("li");
+      li.textContent = place;
+      li.setAttribute("role", "option");
+      li.addEventListener("mousedown", (e) => {
+        e.preventDefault();
+        customInput.value = place;
+        setInputMode("custom");
+        closeSuggestions();
+      });
+      customSuggestions.appendChild(li);
+    });
+    customSuggestions.classList.add("open");
+  }
+
+  customInput.addEventListener("focus", renderSuggestions);
+  customInput.addEventListener("blur", closeSuggestions);
+  customInput.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeSuggestions();
   });
 
   applyLang();

@@ -1,33 +1,37 @@
 :root {
-  --bg: #101511;
-  --bg-elevated: #191f1a;
-  --card-border: #2b332c;
-  --text: #eef3ec;
-  --text-muted: #9aab9c;
-  --accent: #4c9a6e;
-  --accent-hover: #5fb884;
-  --up: #4caf6a;
-  --down: #e0554a;
-  --warn-bg: #2a2312;
-  --warn-border: #6b551e;
-  --warn-text: #e8cf8a;
+  --bg: #f5f9f4;
+  --bg-elevated: #ffffff;
+  --card-border: #dbe6d8;
+  --text: #172016;
+  --text-muted: #5e6c5f;
+  --accent: #2f7a51;
+  --accent-hover: #256341;
+  --up: #2f8f52;
+  --down: #c8493d;
+  --warn-bg: #fdf1d6;
+  --warn-border: #e6c579;
+  --warn-text: #6b4e0f;
   --radius: 14px;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
-    --bg: #f5f9f4;
-    --bg-elevated: #ffffff;
-    --card-border: #dbe6d8;
-    --text: #172016;
-    --text-muted: #5e6c5f;
-    --accent: #2f7a51;
-    --accent-hover: #256341;
-    --up: #2f8f52;
-    --down: #c8493d;
-    --warn-bg: #fdf1d6;
-    --warn-border: #e6c579;
-    --warn-text: #6b4e0f;
+    --bg: #101511;
+    --bg-elevated: #191f1a;
+    --card-border: #2b332c;
+    --text: #eef3ec;
+    --text-muted: #9aab9c;
+    --accent: #4c9a6e;
+    --accent-hover: #5fb884;
+    --up: #4caf6a;
+    --down: #e0554a;
+    --warn-bg: #2a2312;
+    --warn-border: #6b551e;
+    --warn-text: #e8cf8a;
+  }
+
+  #customInput {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239aab9c' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   }
 }
 
@@ -186,6 +190,46 @@ body {
 
 .field input:focus,
 .field select:focus { outline: none; border-color: var(--accent); }
+
+.combo-wrap { position: relative; }
+
+#customInput {
+  width: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%235e6c5f' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 34px;
+}
+
+.combo-suggestions {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: var(--bg-elevated);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  max-height: 220px;
+  overflow-y: auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  z-index: 20;
+}
+
+.combo-suggestions.open { display: block; }
+
+.combo-suggestions li {
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.combo-suggestions li:hover,
+.combo-suggestions li.active { background: var(--bg); color: var(--accent); }
 
 .field input:disabled,
 .field select:disabled { opacity: 0.45; cursor: not-allowed; }

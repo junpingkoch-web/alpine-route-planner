@@ -137,7 +137,10 @@
       </div>
       <div class="field">
         <label for="customInput" data-i18n="customLabel">或输入其他瑞士地点（仅天气 + 通用建议）</label>
-        <input type="text" id="customInput" data-i18n-placeholder="customPlaceholder" placeholder="例如 Zermatt、St. Moritz…">
+        <div class="combo-wrap">
+          <input type="text" id="customInput" autocomplete="off" data-i18n-placeholder="customPlaceholder" placeholder="例如 Zermatt、St. Moritz…">
+          <ul class="combo-suggestions" id="customSuggestions" role="listbox"></ul>
+        </div>
       </div>
       <button id="planBtn" class="btn btn-primary" type="button" data-i18n="planBtn">生成行程</button>
     </div>
@@ -153,7 +156,7 @@
       </div>
 
       <div class="card boat-card">
-        <h2 class="section-title" data-i18n="boatTitle">湖船班次</h2>
+        <h2 class="section-title" id="boatTitleEl" data-i18n="boatTitle">湖船班次</h2>
         <div id="boatBody" class="boat-body"></div>
         <p class="source-note" data-i18n="boatSource">数据来源：transport.opendata.ch（瑞士公共交通开放数据）</p>
       </div>
