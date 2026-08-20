@@ -680,8 +680,9 @@
   function renderSuggestions() {
     const query = customInput.value.trim().toLowerCase();
     customSuggestions.innerHTML = "";
-    if (!query) { closeSuggestions(); return; }
-    const matches = SWISS_PLACES.filter((p) => p.toLowerCase().includes(query)).slice(0, 8);
+    const matches = query
+      ? SWISS_PLACES.filter((p) => p.toLowerCase().includes(query)).slice(0, 8)
+      : SWISS_PLACES;
     if (!matches.length) { closeSuggestions(); return; }
     matches.forEach((place) => {
       const li = document.createElement("li");
