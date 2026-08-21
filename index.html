@@ -191,20 +191,45 @@
     </div>
 
     <section class="explain-section">
-      <h2 data-i18n="explainTitle">How does this itinerary planner actually work?</h2>
-      <p data-i18n="explainP1"></p>
-      <p data-i18n="explainP2"></p>
-      <p data-i18n="explainP3"></p>
+      <h2 data-i18n="explainTitle">这个行程规划器是怎么运作的？</h2>
+      <p data-i18n="explainP1">选定路线或自定义地点后，工具会实时调用两个公开数据接口：Open-Meteo 提供当天的气温、降雨概率、风速和日出日落时间；transport.opendata.ch（瑞士公共交通开放数据）提供湖船实际班次。两者都是免费公开的官方/半官方数据源，不需要注册账号，也不经过我自己的服务器中转。</p>
+      <p data-i18n="explainP2">装备清单不是固定模板，而是根据当天实时天气规则生成的：降雨概率较高会加入防水外套和防水袋，气温较低会加入保暖层，风速较大会提示带上防风衣。如果两个接口任一暂时不可用，页面会显示提示，并退回到一份通用行程模板，保证工具依然可用。</p>
+      <p data-i18n="explainP3">精选路线（如布里恩茨湖、图恩湖等）会生成包含徒步耗时、海拔爬升、餐饮点的完整行程；如果你输入的是列表之外的其他瑞士地点，工具只能提供天气信息和一份通用建议，因为没有对应的路线/餐饮数据库。所有信息仅供行程参考，具体船班、餐厅营业时间请以官方渠道当天信息为准。</p>
 
-      <h2 data-i18n="walkTitle">Walking through it: Lake Brienz → Giessbach Falls</h2>
-      <p data-i18n="walkP1"></p>
-      <p data-i18n="walkP2"></p>
-      <p data-i18n="walkP3"></p>
-      <p data-i18n="walkP4"></p>
-      <p data-i18n="walkP5"></p>
+      <h2 data-i18n="walkTitle">实地走一遍：布里恩茨湖 → 吉斯巴赫瀑布</h2>
+      <p data-i18n="walkP1">用最受欢迎的布里恩茨湖路线举例，具体说说工具生成的行程长什么样。</p>
+      <p data-i18n="walkP2">从布里恩茨码头出发，先坐15分钟渡轮到吉斯巴赫——这段航程本身就是重头戏，湖水在阳光下常常呈现出一种近乎不真实的绿松石色，两岸是陡峭的山坡和散落的木屋。</p>
+      <p data-i18n="walkP3">上岸后是30分钟的徒步爬升，直接通向吉斯巴赫瀑布的观景台——这条路线整体难度标注为「适中」，累计爬升约300米，对日常有运动习惯的人不算吃力，但确实需要一双抓地力不错的鞋，而不是拖鞋或帆布鞋。</p>
+      <p data-i18n="walkP4">到达瀑布区后，有45分钟左右可以沿着瀑布环线走一圈、在几个观景点拍照——吉斯巴赫瀑布分14级跌落超过500米落差，是瑞士最壮观的瀑布之一，也是这条路线真正的目的地。最后40分钟原路下山返回码头，正好赶下一班船回布里恩茨。中途可以在瀑布旁的Grandhotel Giessbach露台餐厅歇脚，出发前也可以先在布里恩茨火车站广场的面包咖啡店垫垫肚子。</p>
+      <p data-i18n="walkP5">整段行程四个环节加起来大约2小时10分钟的活动时间，加上往返渡轮和用餐，安排成一个悠闲的半天行程刚好合适——这也是工具默认把每段路线拆成「渡轮/徒步/游览/返程」四步来呈现的原因：让你出发前就知道每一段大概要多久，而不是到了现场才临时估算。</p>
 
-      <h2 data-i18n="faqTitle">Frequently Asked Questions</h2>
-      <div class="faq-list" id="faqList"></div>
+      <h2 data-i18n="faqTitle">常见问题</h2>
+      <div class="faq-list" id="faqList">
+        <details class="faq-item">
+          <summary><span class="chev">▶</span> <span>天气和船班数据是实时的吗？</span></summary>
+          <div class="faq-a">是的。天气数据来自 Open-Meteo，船班数据来自 transport.opendata.ch（瑞士公共交通开放数据接口），都是每次生成行程时实时查询，不是预先缓存的静态数据。</div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="chev">▶</span> <span>装备清单是怎么算出来的？</span></summary>
+          <div class="faq-a">根据当天天气实时判断：降雨概率高会建议带防水外套和防水袋，气温低会建议加保暖层，风速大会提示带防风衣，不是固定不变的清单。</div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="chev">▶</span> <span>如果我输入的地点不在精选路线列表里会怎样？</span></summary>
+          <div class="faq-a">工具仍然会显示该地点的实时天气，但因为没有对应的路线、船班和餐饮数据库，只能提供一份通用行程建议，而不是完整的定制化行程。</div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="chev">▶</span> <span>工具能直接帮我订船票吗？</span></summary>
+          <div class="faq-a">不能。工具只展示公开接口查到的班次时刻作为参考，实际购票请通过瑞士联邦铁路（SBB）App 或对应湖船公司官方渠道办理。</div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="chev">▶</span> <span>下载的海报会上传到哪里吗？</span></summary>
+          <div class="faq-a">不会。海报完全在你的浏览器本地用 Canvas 绘制生成，点击下载才会保存为图片文件，全程不会上传到任何服务器。</div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="chev">▶</span> <span>这个工具会保存我的搜索记录吗？</span></summary>
+          <div class="faq-a">不会。只有语言偏好会保存在本地浏览器中，其余搜索和生成结果都不会被记录或发送到服务器。</div>
+        </details>
+      </div>
     </section>
 
     <footer class="disclaimer">
