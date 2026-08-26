@@ -655,6 +655,7 @@
 
       results.hidden = false;
       statusLine.hidden = true;
+      if (typeof gtag === "function") gtag("event", "tool_result_generated", { tool_name: "alpine-route-planner" });
     } catch (err) {
       statusLine.textContent = t("boatUnavailable");
     } finally {
