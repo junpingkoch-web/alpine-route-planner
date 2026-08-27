@@ -66,6 +66,10 @@
       walkP3: "上岸后是30分钟的徒步爬升，直接通向吉斯巴赫瀑布的观景台——这条路线整体难度标注为「适中」，累计爬升约300米，对日常有运动习惯的人不算吃力，但确实需要一双抓地力不错的鞋，而不是拖鞋或帆布鞋。",
       walkP4: "到达瀑布区后，有45分钟左右可以沿着瀑布环线走一圈、在几个观景点拍照——吉斯巴赫瀑布分14级跌落超过500米落差，是瑞士最壮观的瀑布之一，也是这条路线真正的目的地。最后40分钟原路下山返回码头，正好赶下一班船回布里恩茨。中途可以在瀑布旁的Grandhotel Giessbach露台餐厅歇脚，出发前也可以先在布里恩茨火车站广场的面包咖啡店垫垫肚子。",
       walkP5: "整段行程四个环节加起来大约2小时10分钟的活动时间，加上往返渡轮和用餐，安排成一个悠闲的半天行程刚好合适——这也是工具默认把每段路线拆成「渡轮/徒步/游览/返程」四步来呈现的原因：让你出发前就知道每一段大概要多久，而不是到了现场才临时估算。",
+      relatedTitle: "延伸阅读：这条路线还能怎么接？",
+      relatedP1: "工具默认生成的布里恩茨湖行程到吉斯巴赫瀑布就结束了。如果时间和体力允许，其实还能继续往下延伸——看完瀑布顺路收下图恩古城的水闸桥和雪山远眺，两篇实战攻略可以参考：",
+      relatedCta1: "瑞士阿尔卑斯一日游完美规划：以卢塞恩到吉斯巴赫瀑布为例 →",
+      relatedCta2: "布里恩茨湖一日游的进阶玩法：接上图恩古城的完整路线 →",
       faqTitle: "常见问题",
       faq: [
         { q: "天气和船班数据是实时的吗？", a: "是的。天气数据来自 Open-Meteo，船班数据来自 transport.opendata.ch（瑞士公共交通开放数据接口），都是每次生成行程时实时查询，不是预先缓存的静态数据。" },
@@ -137,6 +141,10 @@
       walkP3: "Once you land, it's a 30-minute climb straight up to the Giessbach Falls viewing terrace — the route is rated \"moderate,\" with about 300 meters of elevation gain, manageable for anyone with a basic fitness level, but you do want real hiking shoes with grip, not sandals or sneakers.",
       walkP4: "At the falls, you get roughly 45 minutes to walk the waterfall loop and stop at a few viewpoints — Giessbach Falls drops over 500 meters across 14 cascades, one of Switzerland's most dramatic waterfalls and the actual point of the trip. The last 40 minutes takes you back down to the pier, timed to catch the next boat to Brienz. Along the way you can stop at the Grandhotel Giessbach's terrace restaurant, or grab pastries and coffee at the bakery café by Brienz station before you set off.",
       walkP5: "All four segments together add up to about 2 hours 10 minutes of actual activity, which — with the boat crossings and a meal built in — fits neatly into a relaxed half-day trip. That's also why the tool breaks every route into four steps (boat / climb / explore / return) instead of one vague summary: you know roughly how long each part takes before you even leave the house.",
+      relatedTitle: "Further Reading: Where Else Can This Route Go?",
+      relatedP1: "The tool's default Lake Brienz itinerary ends at Giessbach Falls. With a bit more time and energy, the day can keep going — on to Thun's old town and its riverside sluice-gate walkway. Two full write-ups cover the route:",
+      relatedCta1: "The Perfect Swiss Alps Day Trip: Lucerne to Giessbach Falls →",
+      relatedCta2: "Beyond Lake Brienz: Extending the Day Trip to Thun's Old Town →",
       faqTitle: "Frequently Asked Questions",
       faq: [
         { q: "Is the weather and boat data actually live?", a: "Yes. Weather comes from Open-Meteo and boat schedules from transport.opendata.ch (Swiss public transport open data) — both are queried live each time you generate an itinerary, not pre-cached static data." },
@@ -208,6 +216,10 @@
       walkP3: "Nach der Landung geht es 30 Minuten steil hinauf zur Aussichtsterrasse der Giessbachfälle — die Route ist mit „mittel\" eingestuft, mit rund 300 Höhenmetern, machbar für jeden mit einer grundlegenden Fitness, aber du brauchst wirklich griffige Wanderschuhe, keine Sandalen oder Turnschuhe.",
       walkP4: "An den Fällen bleiben etwa 45 Minuten für den Wasserfall-Rundweg mit mehreren Aussichtspunkten — die Giessbachfälle stürzen über 14 Kaskaden mehr als 500 Höhenmeter in die Tiefe und sind das eigentliche Ziel dieses Ausflugs. Die letzten 40 Minuten führen zurück zum Steg, passend zur nächsten Schiffsabfahrt nach Brienz. Unterwegs lohnt sich ein Stopp auf der Terrasse des Grandhotel Giessbach, oder du stärkst dich vor der Abfahrt im Bäckerei-Café am Brienzer Bahnhofplatz.",
       walkP5: "Alle vier Abschnitte zusammen ergeben rund 2 Stunden 10 Minuten reine Aktivzeit — zusammen mit den Schifffahrten und einer Mahlzeit ergibt das einen entspannten halben Tag. Genau deshalb teilt das Tool jede Route in vier Schritte (Schiff / Aufstieg / Erkunden / Rückweg) statt einer vagen Zusammenfassung — du weisst schon vor der Abfahrt ungefähr, wie lange jeder Teil dauert.",
+      relatedTitle: "Weiterlesen: Wie geht die Route noch weiter?",
+      relatedP1: "Die Standardroute des Tools endet am Giessbachfall. Mit etwas Zeit und Kondition lässt sich der Tag problemlos verlängern — weiter zur Altstadt von Thun mit ihrem Wehrsteg über der Aare. Zwei ausführliche Reiseberichte dazu:",
+      relatedCta1: "Der perfekte Schweizer Alpen-Tagesausflug: Von Luzern zum Giessbachfall →",
+      relatedCta2: "Weiter ab Brienzersee: Die Tagestour bis nach Thun verlängern →",
       faqTitle: "Häufig gestellte Fragen",
       faq: [
         { q: "Sind Wetter- und Schiffsdaten wirklich live?", a: "Ja. Die Wetterdaten stammen von Open-Meteo, die Schiffszeiten von transport.opendata.ch (offene Daten des Schweizer öffentlichen Verkehrs) — beide werden bei jeder Routenerstellung live abgefragt, nicht aus einem statischen Cache." },
